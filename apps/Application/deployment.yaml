@@ -16,7 +16,7 @@ spec:
       - name: my-flask-app
         image: 292029882946.dkr.ecr.us-east-1.amazonaws.com/react-ci-images:latest
         ports:
-         - containerPort: 80
+        - containerPort: 80
         livenessProbe:
           httpGet:
             path: /health
