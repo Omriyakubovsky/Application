@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: my-flask-app
-        image: your-image
+        image: 292029882946.dkr.ecr.us-east-1.amazonaws.com/react-ci-images:latest
         ports:
         - containerPort: 80
         livenessProbe:
@@ -75,12 +75,12 @@ spec:
   apiVersion: autoscaling/v2beta2
   kind: HorizontalPodAutoscaler
   metadata:
-    name: express-test-hpa
+    name: test-hpa
   spec:
     scaleTargetRef:
       apiVersion: apps/v1
       kind: Deployment
-      name: express-test
+      name: my-flask-app
     minReplicas: 2
     maxReplicas: 10
     metrics:
