@@ -6,13 +6,13 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/group.name: application
-    alb.ingress.kubernetes.io/group.order: '1'
-    alb.ingress.kubernetes.io/security-groups: sg-xxxxxxxxxxxxx
-    alb.ingress.kubernetes.io/subnets: subnet-xxxxxxxxxxxxxx,subnet-yyyyyyyyyyyyyy
+    alb.ingress.kubernetes.io/group.name: iris
+    alb.ingress.kubernetes.io/group.order: '2'
+    alb.ingress.kubernetes.io/security-groups: sg-08137fe261b4a4e2a
+    alb.ingress.kubernetes.io/subnets: subnet-07507930234aea5c7,subnet-037f3172fc6c7af19
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/healthcheck-path: "/health"
-    alb.ingress.kubernetes.io/certificate-arn: ""
+    alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:us-east-1:292029882946:certificate/c08c7c36-86fb-42cf-9ad3-2e908d696b2f"
        alb.ingress.kubernetes.io/actions.ssl-redirect: >
       {
         "Type":"redirect",
