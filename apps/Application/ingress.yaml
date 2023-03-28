@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/group.name: application
+    alb.ingress.kubernetes.io/group.order: '1'
+    alb.ingress.kubernetes.io/security-groups: sg-xxxxxxxxxxxxx
+    alb.ingress.kubernetes.io/subnets: subnet-xxxxxxxxxxxxxx,subnet-yyyyyyyyyyyyyy
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/healthcheck-path: "/health"
+    alb.ingress.kubernetes.io/certificate-arn: ""
+       alb.ingress.kubernetes.io/actions.ssl-redirect: >
+      {
+        "Type":"redirect",
+        "RedirectConfig":{
+            "Protocol":"HTTPS",
+            "Port":"443",
+            "StatusCode":"HTTP_301"
+        }
+      }  
+labels:
+    app: python-app-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: python-app
+            port:
+              number: 443
