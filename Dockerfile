@@ -1,5 +1,5 @@
 FROM python:3.9-slim
-RUN pip install flask boto3
+RUN pip install flask requests
 COPY app.py .
 COPY templates templates
 ENV FLASK_APP=app.py

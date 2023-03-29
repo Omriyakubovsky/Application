@@ -1,5 +1,6 @@
 from flask import Flask, render_template
-import boto3
+import requests
+
 
 app = Flask(__name__)
 
@@ -13,10 +14,9 @@ def health_check():
     return "OK", 200
 
 def get_instance_id():
-    ec2 = boto3.client("ec2")
-    response = ec2.describe_instances()
-    instance_id = response["Reservations"][0]["Instances"][0]["InstanceId"]
+    r = requests.get('http://169.254.169.254/latest/meta-data/instance-id')
+    instance_id = r.text
     return instance_id
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0",port=80)
+    app.run(debug=True, host="0.0.0.0", port=80)
