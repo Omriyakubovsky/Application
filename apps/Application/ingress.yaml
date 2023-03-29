@@ -8,8 +8,8 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/group.name: iris
     alb.ingress.kubernetes.io/group.order: '2'
-    alb.ingress.kubernetes.io/security-groups: sg-08137fe261b4a4e2a
-    alb.ingress.kubernetes.io/subnets: subnet-07507930234aea5c7,subnet-037f3172fc6c7af19
+    alb.ingress.kubernetes.io/security-groups: sg-0421520f30a4ac9ab
+    alb.ingress.kubernetes.io/subnets: subnet-05525bf8c3cb6ef5c,subnet-09b096fd0c31c25dc
     alb.ingress.kubernetes.io/actions.forward-single-tg: >
       {"type":"forward","targetGroupARN": "arn:aws:elasticloadbalancing:us-east-1:292029882946:targetgroup/k8s-argocd-argocdse-d481d85b97/a2be8e8eeeb81f87"}
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
