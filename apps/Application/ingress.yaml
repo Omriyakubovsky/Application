@@ -10,6 +10,8 @@ metadata:
     alb.ingress.kubernetes.io/group.order: '2'
     alb.ingress.kubernetes.io/security-groups: sg-08137fe261b4a4e2a
     alb.ingress.kubernetes.io/subnets: subnet-07507930234aea5c7,subnet-037f3172fc6c7af19
+    alb.ingress.kubernetes.io/actions.forward-single-tg: >
+      {"type":"forward","targetGroupARN": "arn:aws:elasticloadbalancing:us-east-1:292029882946:targetgroup/k8s-argocd-argocdse-d481d85b97/a2be8e8eeeb81f87"}
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/healthcheck-path: "/health"
     alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:us-east-1:292029882946:certificate/c08c7c36-86fb-42cf-9ad3-2e908d696b2f"
