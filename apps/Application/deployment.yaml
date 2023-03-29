@@ -17,19 +17,19 @@ spec:
         image: 292029882946.dkr.ecr.us-east-1.amazonaws.com/react-ci-images:latest
         ports:
         - containerPort: 80
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 80
-          initialDelaySeconds: 5
-          periodSeconds: 30
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 80
-          initialDelaySeconds: 5
-          periodSeconds: 30
-#         volumeMounts:
+#         livenessProbe:
+#           httpGet:
+#             path: /health
+#             port: 80
+#           initialDelaySeconds: 5
+#           periodSeconds: 30
+#         readinessProbe:
+#           httpGet:
+#             path: /health
+#             port: 80
+#           initialDelaySeconds: 5
+#           periodSeconds: 30
+# #         volumeMounts:
 #         - name: my-pv
 #           mountPath: /data
 #       volumes:
