@@ -29,7 +29,7 @@ spec:
             port: 80
           initialDelaySeconds: 5
           periodSeconds: 30
-         volumeMounts:
+        volumeMounts:
         - name: my-pv
           mountPath: /data
       volumes:
@@ -71,19 +71,6 @@ spec:
   awsElasticBlockStore:
     volumeID: your-volume-id
     fsType: ext4
-# ---
-# apiVersion: autoscaling/v1
-# kind: HorizontalPodAutoscaler
-# metadata:
-#  name: hpa-deployment
-# spec:
-#  scaleTargetRef:
-#    apiVersion: apps/v1
-#    kind: Deployment
-#    name: my-flask-app
-#  minReplicas: 1
-#  maxReplicas: 10
-#  targetCPUUtilizationPercentage: 50
 # ---
 # apiVersion: autoscaling/v1
 # kind: HorizontalPodAutoscaler
