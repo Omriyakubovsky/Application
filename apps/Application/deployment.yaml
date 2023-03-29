@@ -29,58 +29,58 @@ spec:
             port: 80
           initialDelaySeconds: 5
           periodSeconds: 30
-        volumeMounts:
-        - name: my-pv
-          mountPath: /data
-      volumes:
-      - name: my-pv
-        persistentVolumeClaim:
-          claimName: my-pvc
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: my-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 20Gi
-  storageClassName: aws-ebs
-  volumeMode: Filesystem
-  volumeName: my-pv
-  selector:
-    matchLabels:
-      type: my-pv
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: my-pv
-  labels:
-    type: my-pv
-spec:
-  capacity:
-    storage: 20Gi
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: aws-ebs
-  volumeMode: Filesystem
-  awsElasticBlockStore:
-    volumeID: your-volume-id
-    fsType: ext4
+#         volumeMounts:
+#         - name: my-pv
+#           mountPath: /data
+#       volumes:
+#       - name: my-pv
+#         persistentVolumeClaim:
+#           claimName: my-pvc
 # ---
-# apiVersion: autoscaling/v1
-# kind: HorizontalPodAutoscaler
+# apiVersion: v1
+# kind: PersistentVolumeClaim
 # metadata:
-#  name: hpa-deployment
+#   name: my-pvc
 # spec:
-#  scaleTargetRef:
-#    apiVersion: apps/v1
-#    kind: Deployment
-#    name: my-flask-app
-#  minReplicas: 1
-#  maxReplicas: 10
-#  targetCPUUtilizationPercentage: 50
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 20Gi
+#   storageClassName: aws-ebs
+#   volumeMode: Filesystem
+#   volumeName: my-pv
+#   selector:
+#     matchLabels:
+#       type: my-pv
+# ---
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: my-pv
+#   labels:
+#     type: my-pv
+# spec:
+#   capacity:
+#     storage: 20Gi
+#   accessModes:
+#     - ReadWriteOnce
+#   persistentVolumeReclaimPolicy: Retain
+#   storageClassName: aws-ebs
+#   volumeMode: Filesystem
+#   awsElasticBlockStore:
+#     volumeID: your-volume-id
+#     fsType: ext4
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+ name: hpa-deployment
+spec:
+ scaleTargetRef:
+   apiVersion: apps/v1
+   kind: Deployment
+   name: my-flask-app
+ minReplicas: 1
+ maxReplicas: 10
+ targetCPUUtilizationPercentage: 50
