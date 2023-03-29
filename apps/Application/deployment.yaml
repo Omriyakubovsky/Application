@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: my-flask-app
-        image: 292029882946.dkr.ecr.us-east-1.amazonaws.com/iris:latest
+        image: nginx
         ports:
         - containerPort: 80
 #         livenessProbe:
