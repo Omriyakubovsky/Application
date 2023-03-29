@@ -17,60 +17,60 @@ spec:
         image: 292029882946.dkr.ecr.us-east-1.amazonaws.com/iris:latest
         ports:
         - containerPort: 80
-#         livenessProbe:
-#           httpGet:
-#             path: /health
-#             port: 80
-#           initialDelaySeconds: 5
-#           periodSeconds: 30
-#         readinessProbe:
-#           httpGet:
-#             path: /health
-#             port: 80
-#           initialDelaySeconds: 5
-#           periodSeconds: 30
-# #         volumeMounts:
-#         - name: my-pv
-#           mountPath: /data
-#       volumes:
-#       - name: my-pv
-#         persistentVolumeClaim:
-#           claimName: my-pvc
-# ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: my-pvc
-# spec:
-#   accessModes:
-#     - ReadWriteOnce
-#   resources:
-#     requests:
-#       storage: 20Gi
-#   storageClassName: aws-ebs
-#   volumeMode: Filesystem
-#   volumeName: my-pv
-#   selector:
-#     matchLabels:
-#       type: my-pv
-# ---
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#   name: my-pv
-#   labels:
-#     type: my-pv
-# spec:
-#   capacity:
-#     storage: 20Gi
-#   accessModes:
-#     - ReadWriteOnce
-#   persistentVolumeReclaimPolicy: Retain
-#   storageClassName: aws-ebs
-#   volumeMode: Filesystem
-#   awsElasticBlockStore:
-#     volumeID: your-volume-id
-#     fsType: ext4
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 30
+         volumeMounts:
+        - name: my-pv
+          mountPath: /data
+      volumes:
+      - name: my-pv
+        persistentVolumeClaim:
+          claimName: my-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  storageClassName: aws-ebs
+  volumeMode: Filesystem
+  volumeName: my-pv
+  selector:
+    matchLabels:
+      type: my-pv
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-pv
+  labels:
+    type: my-pv
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: aws-ebs
+  volumeMode: Filesystem
+  awsElasticBlockStore:
+    volumeID: your-volume-id
+    fsType: ext4
 # ---
 # apiVersion: autoscaling/v1
 # kind: HorizontalPodAutoscaler
